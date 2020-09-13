@@ -12,7 +12,7 @@ var exist = function(board,word){
     }
 
     const check = (i,j,s,k)=>{
-        if(board[i][j]!=s[0]){
+        if(board[i][j]!==s.charAt(k)){
             return false;
         }else if(k==s.length-1){
             return true;
@@ -39,7 +39,7 @@ var exist = function(board,word){
     }
     for(let i=0;i<h;i++){
         for(let j=0;j<w;j++){
-            let flag = check(i,j,s,0);
+            let flag = check(i,j,word,0);
             if(flag){
                 return true;
             }
