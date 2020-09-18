@@ -76,6 +76,7 @@ var permuteUnique = function(nums) {
             if(visited[i]) continue;
             if(i>0&&nums[i]==nums[i-1]&&!visited[i-1]) continue;
             //保证[1,1,2,3]中两个1的排列是相同的，一定是nums[0],nums[1]这样的顺序
+            //https://leetcode-cn.com/problems/permutations-ii/solution/47-quan-pai-lie-iiche-di-li-jie-pai-lie-zhong-de-q/
             visited[i] = true;
 
             temp.push(nums[i]);
