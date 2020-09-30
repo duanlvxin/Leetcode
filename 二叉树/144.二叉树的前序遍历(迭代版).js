@@ -28,3 +28,17 @@ var preorderTraversal = function(root) {
     }
     return res;
 };
+
+var preorderTraversal = function(root) {
+    let res = [], stack = [], temp = root;
+    while(stack.length!==0 || temp!==null){
+        while(temp!==null){
+            res.push(temp.val);
+            stack.push(temp);
+            temp = temp.left;
+        }
+        temp = stack.pop();
+        temp = temp.right;
+    }
+    return res;
+};

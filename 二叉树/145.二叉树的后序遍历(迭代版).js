@@ -52,3 +52,17 @@ var postorderTraversal = function(root) {
     }
     return res;
 };
+
+var postorderTraversal = function(root) {  
+    let res = [],stack=[],temp=root;
+    while(stack.length!==0 || temp!==null){
+        while(temp!==null){
+            res.unshift(temp.val);
+            stack.push(temp);
+            temp = temp.right;
+        }
+        temp = stack.pop();
+        temp = temp.left;
+    }
+    return res;
+};
