@@ -26,7 +26,9 @@ function merge(array,l,mid,r){
     }
     temp.push(...(array.slice(i,mid+1)));
     temp.push(...(array.slice(j,r+1)));
-    array = temp;
+    for(let i=l;i<=r;i++){
+        array[i] = temp[i-l];
+    }
 }
 
 /**
