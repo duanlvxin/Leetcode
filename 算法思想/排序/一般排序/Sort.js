@@ -56,6 +56,26 @@ function qSort(array){
     return qSort(left).concat([pivot],qSort(right));
 }
 
+const partition = function(nums,l,h){
+    let pivot = nums[l],j=l;
+    for(let i=l+1;i<=h;i++){
+        if(nums[i]<pivot){
+            j++;
+            [nums[i],nums[j]] = [nums[j],nums[i]];
+        }
+    }
+    [nums[j],nums[l]] = [nums[l],nums[j]];
+    return j
+}   
+
+function qSort2(array,l=0,h=array.length-1){
+    if(l<h){
+        let index = partition(array,l,h);
+        qSort2(array,l,index-1);
+        qSort2(array,index+1,h);
+    }
+}
+
 /**
  * 冒泡排序
  * @param {Array} array 
@@ -163,5 +183,7 @@ console.log("=========================================");
 console.log(HeapSort([9,2,1,3,0,10,-2,9,-3,100]));
 console.log("=========================================");
 arr = [9,2,1,3,0,10,-2,9,-3,100];
-mergeSort(arr);
+// mergeSort(arr);
+// console.log(arr);
+qSort2(arr);
 console.log(arr);
