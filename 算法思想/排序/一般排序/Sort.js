@@ -1,5 +1,5 @@
 /**
- * 归并排序
+ * 归并排序递归版
  * @param {Array} array 
  */
 function mergeSort(array,l=0,r=array.length-1){
@@ -29,6 +29,46 @@ function merge(array,l,mid,r){
     for(let i=l;i<=r;i++){
         array[i] = temp[i-l];
     }
+}
+
+/**
+ * 归并排序迭代版
+ * @param {Array} array 
+ */
+function mergeSort2(arr){
+    if(arr.length==1){
+        return arr;
+    }
+
+    function merge(left, right){
+        var result = [];
+        while(left.length>0 && right.length>0){
+            if(left[0]<right[0]){
+                result.push(left.shift());
+            }else{
+                result.push(right.shift());
+            }
+        }
+        return result.concat(left).concat(right);
+    }
+    
+    let work = [], len=arr.length;
+    for(let i=0;i<len;i++){
+        work.push([arr[i]]);
+    }
+    if(len&1){
+        work.push([]);len++;
+    }
+    
+    for(let lim=len;lim>1;lim/=2){
+        for(var j=0,k=0;k<lim;j++,k+=2){
+            work[j] = merge(work[k],work[k+1]);
+        }
+        if(j&1){
+            work[j] = [];
+        }
+    }
+    return work[0];
 }
 
 /**
@@ -182,8 +222,7 @@ console.log(insertSort([9,2,1,3,0,10,-2,9,-3,100]));
 console.log("=========================================");
 console.log(HeapSort([9,2,1,3,0,10,-2,9,-3,100]));
 console.log("=========================================");
-arr = [9,2,1,3,0,10,-2,9,-3,100];
+arr = [9,2,1,3,0,10,-2,9,-3,100,0,6,9,99];
 // mergeSort(arr);
 // console.log(arr);
-qSort2(arr);
-console.log(arr);
+console.log(mergeSort2(arr));
