@@ -37,3 +37,19 @@ var findKthLargest = function(nums, k) {
     }
     return nums[k];
 };
+
+
+const partition2 = function(nums,l,h){
+    let i=l+1,j=h;
+    while(i<j){
+        while(nums[i]<=nums[l]){i++;}
+        while(nums[j]>nums[l]){j--;}
+        [nums[i],nums[j]] = [nums[j],nums[i]];
+        i++;j--;
+    }
+    [nums[l],nums[j]] = [nums[j],nums[l]];
+    return j;
+}
+
+console.log(partition([5,4,10,1,0,11,100,2,4,9,33,-1,3,4,1,512,4],0,16));
+console.log(partition2([5,4,10,1,0,11,100,2,4,9,33,-1,3,4,1,512,4],0,16));
